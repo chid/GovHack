@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<script type="text/javascript" src="papaparse.min.js"></script>
+<script type="text/javascript">
+	var result;
+	Papa.parse("filteredList.csv", {
+	download: true,
+	header: true,
+	complete: function(results) {
+		console.log(results);
+		result = results;
+	}
+});
+</script>
+</head>
+<body>
+
+
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</body>
+</html>

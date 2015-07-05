@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<!-- http://localhost/gov/air.php?p=2015 -->
+	<script src="js/jquery.js"></script>
+
+</head>
+<body>
+<div id="output"></div>
+<input> 
+
+<div id="info"> hello </div>
+
+<ul class="my-new-list"></ul>
+</body>
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+	
+
+	<script type="text/javascript">
+	console.log('lame');
+	$('#info').text('ok');
+	console.log($('#info').text());
+
+	function getInfo(postCode) {
+		var url = 'http://localhost/gov/air.php?p=';
+		console.log(url);
+		$.getJSON(
+			url + postCode, function( data ) {
+				  var items = [];
+  $.each( data, function( key, val ) {
+    items.push( "<li id='" + key + "'>" + key + '-' + val + "</li>" );
+  });
+ 			outputString = "The typical number of hours that people in your area use their airconditioning on heating is "+data['Annual cooling hours']+" and " + data['Annual heating hours']+ ' hours on cooling';
+ 			outputString += "\n\nThe weighted energy use for your area for your airconditioning unit is 19298 kw/year which equals $... per year";
+			$('#output').text(outputString);
+  $( "<ul/>", {
+    "class": "my-new-list",
+    html: items.join( "" )
+  }).appendTo( "body" );
+			}
+			)
+	}
+	getInfo(2036);
+
+
+
+
+$("input").keyup(function (e) {
+    if (e.keyCode == 13) {
+        getInfo($("input")[0].value);
+    }
+});
+
+
+	</script>
+</html>

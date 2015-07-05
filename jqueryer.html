@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<title></title>
+	<script type="text/javascript">
+	var d;
+	$(document).ready(function(){
+		console.log('ok');
+		$('#output').text('o');
+		$.getJSON( "http://localhost/gov/type.php", function( data ) {
+		  var items = [];
+		  d = data;
+		  $.each( data, function( key, val ) {
+		    // items.push( "<li id='" + key + "'>" + val + "</li>" );
+		    items.push( "<option id='" + key + "'>" + val.Brand + "</li>" );
+		    console.log(val.Brand);
+		    console.log(val);
+		    $('#sel').append($('<option>', { 
+		        value: key,
+		        text : val.Brand 
+		    }));
+		  });
+		 
+		  // $( "<option/>", {
+		  //   "class": "my-new-list",
+		  //   html: items.join( "" )
+		  // }).appendTo( "#sel" );
+		  console.log(items.join( "" ));
+		});
+	});
+	</script>
+</head>
+<body>
+<div id="output"></div>
+<select id='sel'>
+	
+</select>
+</body>
+</html>
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
